@@ -3,6 +3,7 @@ import math
 from typing import (
     List,
     Tuple,
+    NoReturn
 )
 
 
@@ -14,12 +15,16 @@ def calculate_distance(point1: Tuple[int, int], point2: Tuple[int, int]) -> floa
 
 def find_nearest_point(result: List, destinations: dict) -> Tuple[int, int]:
     point_a = list(result[-1].keys())[0]
+    min_path = (point_a, math.inf)
     for point in destinations:
-        destinations[point] = calculate_distance(point_a, point)
-    return min(destinations, key=destinations.get)
+        distance = calculate_distance(point_a, point)
+        destinations[point] = distance
+        if distance < min_path[1]:
+            min_path = (point, distance)
+    return min_path[0]
 
 
-def main():
+def main() -> NoReturn:
     start_point = {(0, 2): 0}
     destinations = {
         (2, 5): 0,
