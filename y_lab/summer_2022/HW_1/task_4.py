@@ -1,38 +1,25 @@
-BANANA = "banana"
+from itertools import combinations
+from typing import Set
 
 
-def all_letters_found(word: str) -> bool:
-    return word.replace("-", "") == BANANA
-
-
-def bananas(s) -> set:
+def bananas(s: str) -> Set[str]:
     result = set()    
-    if len(s) < len(BANANA):
-        return result
-    start = 0
-    finish = len(s) - 1
-    while start <= finish or finish - start >= len(BANANA):
-        last_index = 0
-        find_word = ""
-        for i in range(len(BANANA)):
-            for j in range(last_index + 1, len(s)):
-                if BANANA[i] == s[j]:
-                    find_word = f"{find_word}{s[j]}"
-                    last_index = j
-                    break
-                else:
-                    find_word = f"{find_word}-"
-        if not all_letters_found(find_word):
-            start += 1
-            continue
-        while len(find_word) < len(s):
-            find_word = f"{find_word}-"
-        result.add(find_word)
-        start += 1
+    banana = "banana"
+    for comb in combinations(enumerate(s), 6):
+        find_word = ["-" for _ in range(len(s))]
+        j = 0
+        for idx, letter in comb:
+            if letter == banana[j]:
+                find_word[idx] = letter
+                j += 1
+            else:
+                break
+        if j == len(banana):
+            result.add("".join(find_word))
     return result
 
 
-def main():
+def main() -> None:
     assert bananas("banann") == set()
     assert bananas("banana") == {"banana"}
     assert bananas("bbananana") == {"b-an--ana", "-banana--", "-b--anana", "b-a--nana", "-banan--a",
