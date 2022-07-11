@@ -1,17 +1,16 @@
-from typing import Union
-from heroes import Superman, SuperHero
-from places import Kostroma, Tokyo
+from places import (
+    Kostroma,
+    Tokyo,
+)
 
-
-def save_the_place(hero: SuperHero, place: Union[Kostroma, Tokyo]):
-    hero.find(place)
-    hero.attack()
-    if hero.can_use_ultimate_attack:
-        hero.ultimate()
-    hero.create_news(place)
+from save_places import SavePlace
+from heroes import Superman, ChuckNorris
+from news import Newspaper
 
 
 if __name__ == '__main__':
-    save_the_place(Superman(), Kostroma())
+    place = SavePlace(Superman(), Kostroma(), Newspaper("The New York Times"))
+    place.save_the_place()
     print('-' * 20)
-    save_the_place(SuperHero('Chack Norris', False), Tokyo())
+    place = SavePlace(ChuckNorris(), Tokyo(), Newspaper("The Daily Mirror"))
+    place.save_the_place()
