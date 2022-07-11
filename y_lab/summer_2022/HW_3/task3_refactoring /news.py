@@ -9,7 +9,7 @@ class Media(ABC):
 
     @abstractmethod
     def create_news(self, news: str):
-        pass
+        """Print news"""
 
 
 class Newspaper(Media):
@@ -20,5 +20,4 @@ class Newspaper(Media):
         self.name = name
 
     def create_news(self, news: str):
-        """Print news"""
         print(f"Print in {self.name}: {news}")
