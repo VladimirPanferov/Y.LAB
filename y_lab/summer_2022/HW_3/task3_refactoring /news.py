@@ -5,6 +5,8 @@ from abc import (
 
 
 class Media(ABC):
+    """Some media"""
+
     @abstractmethod
     def create_news(self, news: str):
         pass
