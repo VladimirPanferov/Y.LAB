@@ -5,16 +5,18 @@ from abc import (
 
 
 class AbstractCity(ABC):
+    """Some city"""
     @property
     def name(self):
         return self.name
 
     @abstractmethod
     def get_antagonist(self):
-        pass
+        """Get antagonist in  this place"""
 
 
 class Kostroma(AbstractCity):
+    """Kostroma city"""
     name = 'Kostroma'
 
     def get_antagonist(self):
@@ -22,6 +24,7 @@ class Kostroma(AbstractCity):
 
 
 class Tokyo(AbstractCity):
+    """Tokyo city"""
     name = 'Tokyo'
 
     def get_antagonist(self):
