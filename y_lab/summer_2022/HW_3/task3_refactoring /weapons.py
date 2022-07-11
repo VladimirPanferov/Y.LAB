@@ -1,10 +1,13 @@
 class Gun:
-    pass
+    def fire_a_gun(self):
+        print('PIU PIU')
 
 
 class Laser:
-    pass
+    def incinerate_with_lasers(self):
+        print('Wzzzuuuup!')
 
 
 class HandCombat:
-    pass
+    def roundhouse_kick(self):
+        print('Bump')
